@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+INSTALL_DIR="$HOME/.config/.fade-wallpaper"
+SCRIPT_PATH="$INSTALL_DIR/fade-wallpaper"
+
+TEMP_CRONTAB=$(mktemp)
+! crontab -l > "$TEMP_CRONTAB"
+
+if grep "$SCRIPT_PATH" "$TEMP_CRONTAB"; then
+    echo "* fade-wallpaper: already installed"
+    exit 1
+fi
+
+echo "0 12 * * * $SCRIPT_PATH" >> "$TEMP_CRONTAB"
+crontab "$TEMP_CRONTAB"
+rm "$TEMP_CRONTAB"
+
+echo "* fade-wallpaper installed! Now make sure the history file is clear and wait"
