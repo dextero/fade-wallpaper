@@ -2,6 +2,12 @@
 
 set -e
 
+DEFAULT_TARGET_IMAGE_URI="https://i.imgur.com/7UmuWkS.jpg"
+TARGET_IMAGE_URI="$DEFAULT_TARGET_IMAGE_URI"
+
+DEFAULT_OUTPUT="build/fade-wallpaper"
+OUTPUT="$DEFAULT_OUTPUT"
+
 print_help() {
     cat >&2 <<EOF
 NAME
@@ -12,16 +18,18 @@ SYNOPSIS
 
 OPTIONS
     -i, --target-image-uri URI
-        configure the image that the wallpaper will morph into. This should be
+        Configure the image that the wallpaper will morph into. This should be
         an URI downloadable by wget.
+        Default: $DEFAULT_TARGET_IMAGE_URI
+
+    -o, --output PATH
+        Path to a file to generate ready-to-use script to.
+        Default: $DEFAULT_OUTPUT
 
     -h, --help
-        print this message and exit.
+        Print this message and exit.
 EOF
 }
-
-TARGET_IMAGE_URI="https://i.imgur.com/7UmuWkS.jpg"
-
 
 while [[ "$#" -gt 1 ]]; do
     case "$1" in
@@ -29,13 +37,27 @@ while [[ "$#" -gt 1 ]]; do
             shift
             TARGET_IMAGE_URI="$1"
             ;;
+        -o|--output)
+            shift
+            DEFAULT_OUTPUT="$1"
+            ;;
         -h|--help)
             print_help
             ;;
     esac
+
+    shift
 done
 
+cat 2>&1 <<EOF
+Config:
+* TARGET_IMAGE_URI: $TARGET_IMAGE_URI
+* OUTPUT:           $OUTPUT
+EOF
+
 mkdir -p build
-cp src/install build/fade-wallpaper
+cp src/install "$OUTPUT"
 sed -e "s|##TARGET_IMAGE_URI##|$TARGET_IMAGE_URI|g" \
-    src/fade-wallpaper >> build/fade-wallpaper
+    src/fade-wallpaper >> "$OUTPUT"
+
+echo "$OUTPUT generated"
