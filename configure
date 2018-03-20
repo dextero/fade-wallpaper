@@ -55,7 +55,7 @@ Config:
 * OUTPUT:           $OUTPUT
 EOF
 
-mkdir -p build
+mkdir -p "$(dirname "$OUTPUT")"
 cp src/install "$OUTPUT"
 sed -e "s|##TARGET_IMAGE_URI##|$TARGET_IMAGE_URI|g" \
     src/fade-wallpaper >> "$OUTPUT"
