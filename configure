@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -e
+
+print_help() {
+    cat >&2 <<EOF
+NAME
+    $0 - fade-wallpaper configuration script
+
+SYNOPSIS
+    $0 [ options ... ]
+
+OPTIONS
+    -i, --target-image-uri URI
+        configure the image that the wallpaper will morph into. This should be
+        an URI downloadable by wget.
+
+    -h, --help
+        print this message and exit.
+EOF
+}
+
+TARGET_IMAGE_URI="https://i.imgur.com/7UmuWkS.jpg"
+
+
+while [[ "$#" -gt 1 ]]; do
+    case "$1" in
+        -i|--target-image-uri)
+            shift
+            TARGET_IMAGE_URI="$1"
+            ;;
+        -h|--help)
+            print_help
+            ;;
+    esac
+done
+
+mkdir -p build
+cp src/install build/fade-wallpaper
+sed -e "s|##TARGET_IMAGE_URI##|$TARGET_IMAGE_URI|g" \
+    src/fade-wallpaper >> build/fade-wallpaper
