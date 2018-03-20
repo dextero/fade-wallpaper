@@ -17,4 +17,7 @@ echo "0 12 * * * $SCRIPT_PATH" >> "$TEMP_CRONTAB"
 crontab "$TEMP_CRONTAB"
 rm "$TEMP_CRONTAB"
 
-echo "* fade-wallpaper installed! Now make sure the history file is clear and wait"
+mkdir -p "$INSTALL_DIR"
+touch "$SCRIPT_PATH"
+chmod +x "$SCRIPT_PATH"
+cat >"$SCRIPT_PATH" <<'FADE_WALLPAPER_EOF'
