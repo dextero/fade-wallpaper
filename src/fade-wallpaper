@@ -33,8 +33,9 @@ original_wallpaper() {
 advance_state() {
     local CURR
 
-    CURR="$(cat "$WP_STATE" 2>/dev/null || echo 1)"
-    CURR="$(("$CURR" * 2))"
+    CURR="$(cat "$WP_STATE" 2>/dev/null)"
+    [[ "$CURR" ]] || CURR=1
+    CURR="$((CURR * 2))"
     if [[ "$CURR" -ge 100 ]]; then
         CURR=100
     fi
