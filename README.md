@@ -3,6 +3,8 @@ fade-wallpaper
 
 A tiny script meant to teach people to always lock their screens when leaving the computer. It installs a cron job that slowly fades one's desktop background into an arbitrary image.
 
+![Example](/example.jpg)
+
 
 Disclaimer
 ----------
