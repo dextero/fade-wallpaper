@@ -2,7 +2,7 @@
 
 set -e
 
-WP_TARGET_SOURCE="https://i.imgur.com/7UmuWkS.jpg"
+WP_TARGET_SOURCE="https://lh3.googleusercontent.com/ynqX_mzThV-BMt2G1UwJqA6cQqrORiWBVWlquZ93LeQk6Waw9yckKUTKzmOu2OHU9IMXgfhV9Xf6yCYMQbnF=w0-h0"
 WP_DIR="$HOME/.config/.fade-wallpaper"
 WP_STATE="$WP_DIR/state"
 WP_TARGET="$WP_DIR/target"

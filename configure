@@ -2,7 +2,7 @@
 
 set -e
 
-DEFAULT_TARGET_IMAGE_URI="https://i.imgur.com/7UmuWkS.jpg"
+DEFAULT_TARGET_IMAGE_URI="https://lh3.googleusercontent.com/ynqX_mzThV-BMt2G1UwJqA6cQqrORiWBVWlquZ93LeQk6Waw9yckKUTKzmOu2OHU9IMXgfhV9Xf6yCYMQbnF=w0-h0"
 TARGET_IMAGE_URI="$DEFAULT_TARGET_IMAGE_URI"
 
 DEFAULT_OUTPUT="build/fade-wallpaper"
